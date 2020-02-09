@@ -10,7 +10,12 @@ import string
 import json
 import logging
 
-AQICN_URL = "http://api.waqi.info/feed/here/?token=4cf7f445134f3fb69a4c3f0e5001e507a6cc386f"
+# AFTER, API, USE LATITUDE & LONGITUDE BASED
+LAT = "48.57716751098633" # TODO Replace by saved form latitude value
+LON = "-3.827481269836426"  # TODO Replace by saved form latitude value
+AQICN_GEO_URL = "https://api.waqi.info/feed/geo:"+LAT+";"+LON+"/?token=4cf7f445134f3fb69a4c3f0e5001e507a6cc386f"
+AQICN_IP_URL = "http://api.waqi.info/feed/here/?token=4cf7f445134f3fb69a4c3f0e5001e507a6cc386f"
+
 
 class aqicnError(Exception):
     """Raise when errors occur while fetching or parsing data"""
@@ -34,7 +39,10 @@ class aqicnClient:
     def _fetch_airquality_data(self):
 
         try:
-            result = requests.get(AQICN_URL, timeout=10)
+            api_url = AQICN_IP_URL
+            if LAT and LON :
+                api_url = AQICN_GEO_URL
+            result = requests.get(api_url, timeout=10)
             raw_data = result.text
             json_data = json.loads(raw_data)
             logging.debug(json_data)

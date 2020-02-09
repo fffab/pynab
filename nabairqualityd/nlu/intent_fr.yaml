@@ -3,6 +3,7 @@ type: intent
 name: airquality_forecast
 utterances:
   - air
+  - pollution
   - donne-moi la qualité de l'air
   - qualité de l'air
   - quelle est la qualité de l'air [date:snips/datetime](aujourd'hui)

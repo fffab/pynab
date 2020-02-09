@@ -3,12 +3,25 @@
   <form action="/nabairqualityd/settings">
     {% csrf_token %}
     <div class="card-header">
-      <h5 class="card-title">{% trans "Air quality" %} - {{ config.localisation }}</h5>
+      <h5 class="card-title">{% trans "Air quality" %}</h5>
     </div>
     <div class="card-body">
-        <p>{% trans "Air quality information is provided based on your IP adress. You can select the type of information you want : Agregated index or just PM 2.5. Select Disable to disable the visual animation." %}</p>
+        <p>{% trans "Air quality information is provided based on your longitude/latitude settings. You can select the type of information you want : Agregated index or just PM 2.5. Select Disable to disable the visual animation." %}</p>
         <p>{% trans "You can also ask your rabbit by saying such things as 'What is the air quality today ?'" %}</p>
-		
+
+      <div class="form-group row">
+        <label for="airqualityLatitudeInput" class="col-6 col-form-label">{% trans "Latitude" %}</label>
+        <div class="col-6">
+          <input id="airqualityLatitudeInput" name="location" type="text" class="form-control" placeholder="{% trans "Latitude" %}" value="{{ config.latitude }}" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="airqualityLongitudeInput" class="col-6 col-form-label">{% trans "Longitude" %}</label>
+        <div class="col-6">
+          <input id="airqualityLongitudeInput" name="location" type="text" class="form-control" placeholder="{% trans "Longitude" %}" value="{{ config.longitude }}" />
+        </div>
+      </div>
+
       <div class="form-group row">
         <label for="airqualityIndexSel" class="col-6 col-form-label">{% trans "Index" %}</label>
         <div class="col-6">

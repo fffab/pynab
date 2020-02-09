@@ -108,3 +108,6 @@ venv.bak/
 
 # tmp
 tmp/
+
+# local
+.idea/
